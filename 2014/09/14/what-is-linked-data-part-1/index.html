@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>what is linked data part 1 | christina harlow</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">christina harlow</a><span class="subtitle">glam dataOps &amp; data architecture</span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a><a href="/about" class="sidebar-nav-item">About</a><a href="/presentations" class="sidebar-nav-item">Presentations</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>what is linked data part 1</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2014-09-14</div><div class="post-tags"><a class="post-tag-link" href="/tags/cataloging/">cataloging</a>/<a class="post-tag-link" href="/tags/linked-data/">linked data</a>/<a class="post-tag-link" href="/tags/metadata/">metadata</a>/<a class="post-tag-link" href="/tags/presentations-workshops/">presentations & workshops</a></div></div></div><article><div class="container post"><p>Last weekend, I got to attend the <a href="http://nycarchivesunconference.wordpress.com/" target="_blank" rel="noopener">NYC Archives Unconference</a> (held by the wonderful archivists at Barnard College). It was a great day, although I admit that I skipped out at points to work on Columbia’s test BIBFRAME Editor (more on that later). In a minute of cheek, I proposed to lead a session on Linked Data - and I hoped it would be the kind of Linked Data session that I’m always looking for, by which I mean one based on real world examples. Since these examples-based and libraries-focused sessions don’t appear often in my world, I thought this might be a nice place to start such a conversation.</p>
+<p>For better or worse, the session turned out to be really popular - and so became more of a workshop/lecture than a breakout session. And as ever, it took longer than I hoped to cover the Linked Data theory basics so there wasn’t as much time to work with the examples. But I think it turned out well for some of the audience…?</p>
+<p>As a follow-up to that session, I made <a href="https://docs.google.com/document/d/1MayAPDpxT05EwrxCaat826hk0U7g8GiRHQ6Y42V5SzY/edit?usp=sharing" target="_blank" rel="noopener">my speaker notes</a> available, typos, ramblings, and all. Folks should be able to leave comments on the notes, but no one has (so far - I’m kind of amazed that people are actually looking at that document). I am also aiming to blog parts of those notes here, but with expansions and, for the examples, screencasts.</p>
+<p>So, here is my highly subjective, mostly correct, library metadata-centric, cheat-sheet introduction to Linked Data. Later this week I will start posting the examples using OpenRefine.</p>
+<h3 id="Part-I-Linked-Data-what"><a href="#Part-I-Linked-Data-what" class="headerlink" title="Part I : Linked Data what?"></a>Part I : Linked Data what?</h3><p>To start with, what do libraries and archives people think of when they hear ‘Linked Data’? Here are a few ideas that come to my mind:</p>
+<ul>
+<li>The <a href="http://linkedjazz.org/network/" target="_blank" rel="noopener">pretty amazing network visualizations</a> (although the Linked Jazz Project, which I link out to, is <em>so much more</em> than a beautiful viz)</li>
+<li>Maybe it just seems to be a buzzword, as some of my cataloging colleagues tend to think (and to be fair, many people are treating Linked Data like the silver bullet for all library data ills right now)</li>
+<li>Perhaps it is the hot topic this year for many conference workshops (and here are two GREAT upcoming conferences that have some linked data overtures: <a href="http://www.ala.org/lita/conferences/forum/2014/preconferences" target="_blank" rel="noopener">LITA 2014 Forum</a>, <a href="http://code4lib.org/conference/2015" target="_blank" rel="noopener">Code4Lib 2015</a>)</li>
+<li>Or maybe some folks feel fatigue because, dang it, we <em>just</em> got a handle on RDA (again, the catalogers might be feeling fatigued…)</li>
+</ul>
+<p>Well, it may or may not be all of those things and more. But here, by way of another list, is what I understand Linked Data to be:</p>
+<ul>
+<li>Linked Data is NOT a single standard or technology. Rather, Linked Data should be seen as a set of best practices for creating a ‘web of data’.</li>
+<li>Web of data? Don’t we already have a web of data encoded in HTML (made pretty with CSS, made interactive with Javascript/JQuery, etc.)? But Linked Data is not about just making data available, but making structured, interoperable data available on the web, so that both humans AND machines (search engines, robots, etc.) can understand it. This make the web a richer experience and allows the Semantic Web - a web of data with meaning - to exist.</li>
+<li>To best understand Linked Data, we need to review the oft-quoted Berners Lee tenets (proposed in 2006):<ul>
+<li>Use URIs as names for things</li>
+<li>Use HTTP URIs so folks can look up more information on those named things</li>
+<li>Provide useful information following certain standards (RDF, SPARQL) for folks looking up those URIs</li>
+<li>In that information, include further links to other URIs for added discovery</li>
+</ul>
+</li>
+</ul>
+<p>Uh oh. You can tell this is being discussed by someone who works in libraries because of all the acronyms! Here are some common Linked Data acronyms spelled out:</p>
+<ul>
+<li>URL = a uniform resource locator (you probably already know this one)</li>
+<li>URI = uniform resource identifier. Here are some examples:<ul>
+<li>URI that is a also a URL: <a href="http://id.loc.gov/authorities/subjects/sh85101653" target="_blank" rel="noopener">http://id.loc.gov/authorities/subjects/sh85101653</a></li>
+<li>URI that is not a URL: urn:isbn:096139210x</li>
+</ul>
+</li>
+<li>HTTP = Hypertext Transfer Protocol, or a protocol for sharing hypertext (duh), which is structured text that uses links (or hyperlinks). This may all seem obvious, but HTTP is the basis for our web of data and supporting data linking, integration and interoperability.</li>
+<li>RDF = Resource Description Framework. RDF is but one standard data model for exchanging data via the web. RDF expresses everything in triples : subject predicate object. Here are some examples of RDF triples:<ul>
+<li><a href="http://id.loc.gov/authorities/subjects/sh85101653" target="_blank" rel="noopener">http://id.loc.gov/authorities/subjects/sh85101653</a> <a href="http://www.w3.org/2004/02/skos/core#prefLabel" target="_blank" rel="noopener">http://www.w3.org/2004/02/skos/core#prefLabel</a> “Physics”</li>
+<li>the above triple translated: [subject: concept with specific URI - predicate: has preferred label - object: text string of ‘Physics’]</li>
+<li><a href="http://id.loc.gov/authorities/subjects/sh85101653" target="_blank" rel="noopener">http://id.loc.gov/authorities/subjects/sh85101653</a> <a href="http://www.loc.gov/mads/rdf/v1#authoritativeLabel" target="_blank" rel="noopener">http://www.loc.gov/mads/rdf/v1#authoritativeLabel</a> “Physics”</li>
+<li>the above triple translated: [subject: concept with specific URI - predicate: has authoritative label - object: text string of ‘Physics’]</li>
+<li>Note that the above examples use URIs and text strings. Your triples could be all strings - but then you are not linking to other data via URIs. Also note that RDF aims to be schema-neutral, but this is not as easy as one would think. Just in the above two examples, we use predicates from two different schema (<a href="http://www.loc.gov/standards/mads/" target="_blank" rel="noopener">MADS</a>‘ authoritative label and <a href="http://www.w3.org/2004/02/skos/" target="_blank" rel="noopener">SKOS</a>‘ preferred label) that <em>could</em> be seen as given the same relationship - the primary label for the concept with URI <a href="http://id.loc.gov/authorities/subjects/sh85101653\" target="_blank" rel="noopener">http://id.loc.gov/authorities/subjects/sh85101653\</a>. While RDF intends to be schema-neutral, you need to know what schema are used in your data to best use, model and query that data.</li>
+</ul>
+</li>
+<li>SPARQL = SPARQL Protocol and RDF Query Language (yes, it really is a recursive acronym)<ul>
+<li>SPARQL is how you query RDF datastores</li>
+<li>We will see SPARQL in future posts with examples - where I hope it will make more sense.</li>
+</ul>
+</li>
+</ul>
+<p>We already have XML, why use RDF?</p>
+<ul>
+<li>While it is common to want to compare XML with RDF, we need to be clear: RDF is a model (or framework), while XML is a syntax.<ul>
+<li>That means that, in fact, we can have the RDF model expressed in the XML syntax, i.e. <a href="http://www.w3.org/TR/REC-rdf-syntax/" target="_blank" rel="noopener">RDF/XML</a>.</li>
+<li>But RDF can also be expressed in the serializations <a href="http://www.w3.org/TR/turtle/" target="_blank" rel="noopener">Turtle</a> or <a href="http://www.w3.org/2001/sw/RDFCore/ntriples/" target="_blank" rel="noopener">N-Triples</a>.</li>
+</ul>
+</li>
+<li>Back to XML versus RDF - we can, however, compare the two data requisite data models:<ul>
+<li>XML models data as a tree, while RDF models data as a graph. The difference in these two models, in my opinion, is best explained with visuals. Below are some simple illustrations of these different data models, with another popular model thrown in.</li>
+<li>The tabular data model (aka CSV/spreadsheets):<br>  <img src="/images/tabular_model.png" alt=""></li>
+<li>The tree model (or the markup languages / XML model):<br>  <img src="/images/tree_model.png" alt=""></li>
+<li>The graph model (or the RDF model):<br>  <img src="/images/rdf_model.png" alt=""></li>
+</ul>
+</li>
+<li>The RDF data model allows more flexibility and requires less verbosity than XML. However, XML still has benefits, particularly as certain domains remain schema-loyal (i.e. prefer to use MODS, MADS, DC, VRACore). This links back to the earlier triples examples, where predicates from two different schema were used to express roughly equivalent statements. While RDF is flexible because it should be schema-neutral, choice of schema - even just among different libraries - will still guide many to using XML for schema-specific validation work.</li>
+</ul>
+<p>Alright, so this has been a quick and dirty introduction to Linked Data. Here are a few statements on the role of Linked Data in libraries, particular for cataloging and metadata folks. I warn you now, these points have become my soapbox:</p>
+<ul>
+<li>Traditionally, online (or, for that matter, offline) library catalogs are data silos - i.e., searchers have to go to the data source to find resources and records; the library data does not go out to the patron. Linked Data practices can help get our online records, data, resources out ‘in the wider world’ and where our patrons are searching - like in search engines in Google. This is where the example/post on microdata will help [to be posted].</li>
+<li>Furthermore, traditionally in MARC catalogs, we do not link out to various authorities that are now available as Linked Open Data (like VIAF or the Library of Congress Authorities) - and by link out, I mean we are not storing the value URIs from those authorities. Instead, we store these ‘authorized access points’ as a string or piece of text that follow the preferred form of the name of the object as designated by the authority. Once this name is entered into the record, without a URI, generally integrated library systems cannot 1. confirm this access point is indeed that person (what if that person’s name changes? What if someone records a similar name but it wasn’t from the authority?) ; 2. pull in updated forms or alternate forms of the name automatically as the authority source changes ; and 3. pull in related information via the authority sources about that name. Some systems now may be able to do some of this, but most cannot. Instead, we hire authority vendors to come in and update these authorized access points as the authority data sources update, then leave them static in between. No links, no additional information, no alternate titles pulled in - again the patron has to go out to the authority to find that information.</li>
+<li>Can Linked Data help in these and other cases? Will it improve discoverability and, in turn, make our metadata and cataloging work more appreciated? I think so, although we have a lot of work to do to get there.</li>
+</ul>
+<p>Finally, I should note that some libraries are already using Linked Data. I enjoyed reviewing what others are up to as reported in the results of a Linked Data in Libraries Survey conducted by OCLC Research<a href="http://hangingtogether.org/?p=4137" target="_blank" rel="noopener">here</a>. Some quick facts for this survey:</p>
+<ul>
+<li>There were 122 responses, but 26 of the 122 are not currently implementing linked data projects.</li>
+<li>The other 96 responses reported implementing 172 linked data projects or services, including 25 which consume linked data, 4 which publish linked data, and 47 which both consume and publish linked data.</li>
+<li>In these projects, the most used linked data sources included three that we will see in the examples posts:<ul>
+<li>Worldcat.org</li>
+<li>id.loc.gov</li>
+<li>VIAF</li>
+</ul>
+</li>
+</ul>
+<p>Thanks for reading through my post, and I hope it was helpful. I hope to start posting some examples of using Linked Data with OpenRefine specifically this weekend, then perhaps other tools and scripts in the near future. Feel free to contact me with any corrections, questions, or feedback - or leave a comment below!</p>
+</div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:cmharlow@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="http://twitter.com/cm_harlow" target="_blank"><i class="fa fa-twitter"></i></a><a href="https://github.com/cmh2166" target="_blank"><i class="fa fa-github"></i></a><a href="https://plus.google.com/ChristinaHarlow2166" target="_blank"><i class="fa fa-google-plus"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2018 <a href="/" rel="nofollow">Christina Harlow</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>
