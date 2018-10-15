@@ -1,3 +1,28 @@
-baseURL = "http://example.org/"
+baseURL = "https://cmh2166.github.com/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Christina Harlow: Data Lackey"
+theme = "ananke"
+
+Paginate = 6
+enableRobotsTXT = true
+
+[menu]
+
+  [[menu.main]]
+    identifier = "about"
+    name = "about"
+    url = "/about/"
+
+  [[menu.main]]
+    name = "work"
+    url = "/work/"
+
+[params]
+  favicon = ""
+  description = "Website of posts and work by Christina Harlow."
+  twitter = "https://twitter.com/cm_harlow"
+  instagram = "https://instagram.com/burrito_report/"
+  github = "http://github.com/cmh2166/"
+  linkedin = "https://www.linkedin.com/in/christina-harlow-48797b18/"
+  featured_image = "/images/dandelions.jpg"
+  recent_posts_number = 2
