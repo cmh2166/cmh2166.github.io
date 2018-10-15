@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Christina Harlow: Data Lackey  | openrefine reconciliation workshop c4lmdc</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.49" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.e08a958ae3e530145318b6373195c765.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="openrefine reconciliation workshop c4lmdc" />
+<meta property="og:description" content="Here are my slides, handouts, and other information from a OpenRefine Reconciliation Workshop given at the Code4Lib Maryland, DC, and Commonwealth of Virginia 2015 meeting. I want to make them available for others who may be interested in the topic, or those who attended (since this is a lot of information to cover in one workshop). It was built off of experimentation for particular use cases from a data munger&rsquo;s viewpoint, not a developer&rsquo;s viewpoint, so any corrections, updates, or additions are very much welcome." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cmh2166.github.com/posts/openrefine-reconciliation-workshop-c4lmdc/" /><meta property="article:published_time" content="2015-08-12T18:52:50-07:00"/>
+<meta property="article:modified_time" content="2015-08-12T18:52:50-07:00"/>
+
+<meta itemprop="name" content="openrefine reconciliation workshop c4lmdc">
+<meta itemprop="description" content="Here are my slides, handouts, and other information from a OpenRefine Reconciliation Workshop given at the Code4Lib Maryland, DC, and Commonwealth of Virginia 2015 meeting. I want to make them available for others who may be interested in the topic, or those who attended (since this is a lot of information to cover in one workshop). It was built off of experimentation for particular use cases from a data munger&rsquo;s viewpoint, not a developer&rsquo;s viewpoint, so any corrections, updates, or additions are very much welcome.">
+
+
+<meta itemprop="datePublished" content="2015-08-12T18:52:50-07:00" />
+<meta itemprop="dateModified" content="2015-08-12T18:52:50-07:00" />
+<meta itemprop="wordCount" content="4429">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="openrefine reconciliation workshop c4lmdc"/>
+<meta name="twitter:description" content="Here are my slides, handouts, and other information from a OpenRefine Reconciliation Workshop given at the Code4Lib Maryland, DC, and Commonwealth of Virginia 2015 meeting. I want to make them available for others who may be interested in the topic, or those who attended (since this is a lot of information to cover in one workshop). It was built off of experimentation for particular use cases from a data munger&rsquo;s viewpoint, not a developer&rsquo;s viewpoint, so any corrections, updates, or additions are very much welcome."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://cmh2166.github.com/" class="f3 fw2 hover-white no-underline white-90 dib">
+      Christina Harlow: Data Lackey
+    </a>
+    <div class="flex-l items-center">
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="about page">
+              about
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/work/" title="work page">
+              work
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+  <a href="https://twitter.com/cm_harlow" class="link-transition twitter link dib z-999 pt3 pt0-l mr2" title="Twitter link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+  <a href="https://instagram.com/burrito_report/" class="link-transition instagram link dib z-999 pt3 pt0-l mr2" title="Instagram link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.271,26.578v-0.006c0.502,0,1.005,0.01,1.508-0.002  c0.646-0.017,1.172-0.57,1.172-1.217c0-0.963,0-1.927,0-2.89c0-0.691-0.547-1.24-1.236-1.241c-0.961,0-1.922-0.001-2.883,0  c-0.688,0.001-1.236,0.552-1.236,1.243c-0.001,0.955-0.004,1.91,0.003,2.865c0.001,0.143,0.028,0.291,0.073,0.426  c0.173,0.508,0.639,0.82,1.209,0.823C41.344,26.579,41.808,26.578,42.271,26.578z M33,27.817c-3.384-0.002-6.135,2.721-6.182,6.089  c-0.049,3.46,2.72,6.201,6.04,6.272c3.454,0.074,6.248-2.686,6.321-6.043C39.254,30.675,36.462,27.815,33,27.817z M21.046,31.116  v0.082c0,4.515-0.001,9.03,0,13.545c0,0.649,0.562,1.208,1.212,1.208c7.16,0.001,14.319,0.001,21.479,0  c0.656,0,1.215-0.557,1.215-1.212c0.001-4.509,0-9.02,0-13.528v-0.094h-2.912c0.411,1.313,0.537,2.651,0.376,4.014  c-0.161,1.363-0.601,2.631-1.316,3.803s-1.644,2.145-2.779,2.918c-2.944,2.006-6.821,2.182-9.946,0.428  c-1.579-0.885-2.819-2.12-3.685-3.713c-1.289-2.373-1.495-4.865-0.739-7.451C22.983,31.116,22.021,31.116,21.046,31.116z   M45.205,49.255c0.159-0.026,0.318-0.049,0.475-0.083c1.246-0.265,2.264-1.304,2.508-2.557c0.025-0.137,0.045-0.273,0.067-0.409  V21.794c-0.021-0.133-0.04-0.268-0.065-0.401c-0.268-1.367-1.396-2.428-2.78-2.618c-0.058-0.007-0.113-0.02-0.17-0.03H20.761  c-0.147,0.027-0.296,0.047-0.441,0.08c-1.352,0.308-2.352,1.396-2.545,2.766c-0.008,0.057-0.02,0.114-0.029,0.171V46.24  c0.028,0.154,0.05,0.311,0.085,0.465c0.299,1.322,1.427,2.347,2.77,2.52c0.064,0.008,0.13,0.021,0.195,0.03H45.205z M33,64  C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+
+  <a href="https://www.linkedin.com/in/christina-harlow-48797b18/" class="link-transition linkedin link dib z-999 pt3 pt0-l mr2" title="LinkedIn link">
+    <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+  </a>
+
+
+  <a href="http://github.com/cmh2166/" class="link-transition github link dib z-999 pt3 pt0-l mr2" title="Github link">
+    <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+  </a>
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  <article class="flex-l flex-wrap justify-between mw8 center ph3 ph0-l">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        POSTS
+      </p>
+      <h1 class="f1 athelas mb1">openrefine reconciliation workshop c4lmdc</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-08-12T18:52:50-07:00">August 12, 2015</time>
+    </header>
+
+    <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
+
+<p>Here are my slides, handouts, and other information from a OpenRefine Reconciliation Workshop given at the Code4Lib Maryland, DC, and Commonwealth of Virginia 2015 meeting. I want to make them available for others who may be interested in the topic, or those who attended (since this is a lot of information to cover in one workshop). It was built off of experimentation for particular use cases from a data munger&rsquo;s viewpoint, not a developer&rsquo;s viewpoint, so any corrections, updates, or additions are very much welcome.</p>
+
+<p>If you have questions, please let me know - \@cm_harlow or <a href="mailto:cmharlow@gmail.com">cmharlow@gmail.com</a>.</p>
+
+<p>Folks should feel free to repurpose this work for other such OpenRefine Reconciliation Service workshops/events/whatever.</p>
+
+<p>Links to the slides (available as HTML file or PDF doc), breakout session handouts/guides, and some sample data: <a href="http://www.github.com/cmh2166/c4lMDCpres">GitHub Repo for Workshop</a></p>
+
+<h2 id="draft-of-my-workshop-talking">Draft of My Workshop Talking</h2>
+
+<p>I&rsquo;ve included my rough speaker&rsquo;s notes below, following each slide.</p>
+
+<h3 id="about-this-workshop">About this workshop</h3>
+
+<p>I&rsquo;m Christina Harlow, \@cm_harlow on twitter and a data munger in Tennessee.</p>
+
+<p>This workshop came together rather late in the day, so there were no installation requirements or preliminary guidance from you on where the focus should be. As such, I want to get a feeling for what you want to hear. Raise your hand for the following questions:</p>
+
+<ol>
+<li>How many people are here with laptops with OpenRefine running?</li>
+<li>How many people are here with laptops on which they want to install OpenRefine?</li>
+<li>How many people are here just to learn by watching, discussion?</li>
+</ol>
+
+<p>Different focus:</p>
+
+<ol>
+<li>How many people here want to learn how to use OpenRefine generally?</li>
+<li>How many people here want to learn specifically how to <em>use</em> reconciliation services?</li>
+<li>How many people here want to learn how to <em>build</em> reconciliation services?</li>
+</ol>
+
+<p>Depending on this, I may/may not cover more of the general OpenRefine functions or more on how OpenRefine handles reconciliation objects.</p>
+
+<p>Finally, what is presented comes from the perspective of a data munger, namely myself, who was building out OpenRefine as part of a metadata remediation workflow involving non-technical metadata workers. I&rsquo;m not a developer. I&rsquo;m not a programmer. I&rsquo;m guessing at how this works in a lot of places, and why it works that way, based off of breaking it a lot. Basically&hellip;</p>
+
+<h3 id="left-sharking-it">Left-sharking it</h3>
+
+<p>I&rsquo;m left-sharking it. Please shout out if you understand something that I don&rsquo;t. I should also mention that this work builds off of some really awesome and talented library tech folks, including&hellip;</p>
+
+<h3 id="libtech-developers-to-thank">LibTech Developers to Thank</h3>
+
+<p>these 4 people, a few of which are hear today. Thanks to them is first and foremost for experimenting, building, sharing and documenting their work. I built off of what they did. Their Twitter handles are there, so go ahead and tweet at them to tell them how awesome they are.</p>
+
+<h3 id="slides-examples-install">Slides, Examples, + Install</h3>
+
+<p>Everything from today&rsquo;s presentation - slides, sample data, example workflows - should be in this GitHub repository - <a href="http://github.com/cmh2166/c4lMDCpres">http://github.com/cmh2166/c4lMDCpres</a>. Go ahead and clone/download it on your computer for following along with some of the examples and using the sample data if needed.</p>
+
+<p>If you don&rsquo;t have OpenRefine running but would like to play with it either while I&rsquo;m going through examples or during the more interactive sessions at the end, go ahead to this site - <a href="http://openrefine.org/download.html">http://openrefine.org/download.html</a> - and download the installer for your OS. Note: OpenRefine requires certain versions of java packages (detailed on openrefine.org/downloads page). Downloading these specific Java packages if you don&rsquo;t have them or have to upgrade will be what takes the longest. If you download OpenRefine now and run into an install error, check your java version then prepare for the long wait for the update to download. Also interrupt me to ask for help.</p>
+
+<p>Additionally, we will briefly cover the DERI RDF Extension options for reconciliation. If you are interested in working with that, you&rsquo;ll need to go to the DERI RDF Extension site to download it, then put that code into the extensions subdirectory in the OpenRefine files (wherever you are keeping the OpenRefine application files on your computer, go there and find the extensions directory. Depending on version/OS, it may be in a lib subdirectory).</p>
+
+<p>Nota bene: the DERI RDF Extension, and LODRefine (or Linked Open Data Refine), which is a fork of OpenRefine with this and other helpfuls extensions baked in, are very helpful but no longer actively supported. Just be aware of this and that some issues you might run into will not necessarily have anyone there who can answer or update the codebase.</p>
+
+<h3 id="agenda">Agenda</h3>
+
+<p>With modifications from what I asked you at the beginning, this is the rough agenda. We will start with a very brief introduction, more an overview, to OpenRefine, then review 3 different OpenRefine reconciliation options, with the bulk of the time focused on working with and building or modifying the Standard Reconciliation Service API. I&rsquo;m reviewing 3 options because they all have valid use cases, as well as considerations or issues to keep in mind. They also all required different levels of expertise and can help you get a feel for the data sources you&rsquo;re working with.</p>
+
+<p>Then I&rsquo;m proposing we have breakout sessions, where folks can work through what was shown. If people want to learn more about other OpenRefine functions, we can have a breakout that is just about working with library metadata in OpenRefine, and I&rsquo;m happy to guide that. In the GitHub repository, I&rsquo;ve included files that have some procedures to walk through for both working with reconciliation services as well as a marked up python file explaining how an example Standard Reconciliation Service API was built.</p>
+
+<h3 id="quick-intro-to-openrefine">Quick Intro to OpenRefine</h3>
+
+<p>OpenRefine is a power tool for cleaning up data. It has gained a lot of popularity as of late for library data work, as it offers a nice GUI for doing data normalization, enhancement, review and cleanup. It has gone through a number of iterations in the past few years, including management by Google - I mention this because you will still see GoogleRefine instances running and still working, as well as some other Google naming holdovers. Since 2012, it has been an open source and community supported project, with a website at openrefine.org and a pretty active github repository at github.com/OpenRefine/Openrefine. Because it is community-sourced now, the documentation is somewhat haphazard; parts are very good, other parts, lacking or out-of-date. The documentation on the standard reconciliation service API is out-of-date, and although somewhat helpful, read it with a grain of salt.</p>
+
+<p>More about the technology, OpenRefine is built with java and jetty, a server applet that handles HTTP requests between the backend of the program and the javascript/jquery-based UI that runs in a web browser. While it does act like a web service, it is not on the Internet; it runs locally, and the projects and data worked within OpenRefine are stored locally. This structure is how OpenRefine can handle the reconciliation options we&rsquo;ll be discussing below, all reliant on using HTTP requests to either talk to the external data sources or an intermediary API we create.</p>
+
+<p>The GUI in the web browser is predominately javascript and jquery, while the backend (like I mentioned above) is java. There is no database; all the data you are working with is stored in memory. This means that with larger or really complex datasets, depending on your computer, you will run into performance issues. I generally start to see work-stopping performance issues working with ~50,000 or more &lsquo;standard complexity&rsquo; MODS records. Your mileage may vary. There is a way to allocate more memory for the work at startup - check the OpenRefine GitHub wiki docs for doing this in your particular OS.</p>
+
+<h3 id="openrefine-functionality-checklist">OpenRefine Functionality Checklist</h3>
+
+<p>So most of the people at the workshop declared that they had worked with OpenRefine before and were primarily interested in learning about building the standard reconciliation service API. As such, I&rsquo;m going to breeze through this part.</p>
+
+<p>OpenRefine has a lot of utility for data cleanup and munging, and these are the core functionalities you&rsquo;ll hear about and/or use.</p>
+
+<p>For the Import/Export options, OpenRefine out of the box supports working with a number of data formats - CSV, Excel, JSON, XML, RDF/XML, other&hellip; for import. For export, there is support for exporting a full OpenRefine project, CSV, or possibly JSON/XML with the templating option (this requires some wrangling and is not always possible for the data you&rsquo;re working with to be faithfully represented upon export to that format). Some extensions, such as the DERI/RDF extension, so allow export to RDF serializations - just RDF/XML and RDF N-triples at the moment - with you setting up a RDF skeleton for how to map the records to nodes.</p>
+
+<p>Yet, keep in mind that all of this requires that you transform the original data to a tabular model for working with it as an OpenRefine project, then eventually getting that tabular model data back to or transformed to the data model you want. This is easy if working with CSV, Excel, or other files already in that tabular format. Working with JSON or XML, however, you&rsquo;ll need to do some data massaging to make OpenRefine work efficiently for you. For heavily-nested JSON or XML, this can be a problem, and OpenRefine may not always be the best option. There are some handy tools, packages, script libraries, and other for moving between data models, and I&rsquo;m happy to talk about these with you afterwards. For now, the sample datasets in the GitHub repo are already flattened and ready for easy import into OpenRefine.</p>
+
+<p>Cleans - OpenRefine allows a good UI for cleaning, normalizing and updating - either in batch or manually, though batch is better support - your data.</p>
+
+<p>Facets - these are very helpful for both finding data value outliers, again, normalizing values, as well as just getting a handle of what is the state of your data.</p>
+
+<p>Clusters - when faceting, you can then access a number of grouping algorithms for clustering the values. This can help you normalize data, again, and see what values probably should have the same label/datapoint.</p>
+
+<p>GREL - Google Refine Extension Language. This is a sort of Javascript-y, application-specific language for performing normalization and data munging work in OpenRefine. Some GREL functions can be very powerful for data cleanup, and it is recommended you check out the OpenRefine GitHub repository, which covers GREL very well.</p>
+
+<p>Extensions - these are written by folks who want to add a functionality to OpenRefine, such as with the DERI researchers and the DERI RDF Extension. The OpenRefine documentation has somewhat a list of what is avaiable, though most you will need to do further searching.</p>
+
+<p>If folks want to learn more about just working with library data in OpenRefine, that can be a breakout, or you can ask me directly at some other point.</p>
+
+<h3 id="openrefine-reconciliation">OpenRefine Reconciliation</h3>
+
+<p>So what do I mean when I say &lsquo;reconciliation&rsquo;: I want to take values in my dataset in OpenRefine, compare them with data values in an external dataset, and if they are a match (decided through a number of ways and algorithms, matching functions, etc.), I then can change my data value to be the same as the external data value, or link the two (perhaps by just pulling in a URI from the external dataset), or possibly just pull in extra information about the external data value into my project.</p>
+
+<h3 id="openrefine-reconciliation-options">OpenRefine Reconciliation Options</h3>
+
+<p>There are at least 3 ways to perform reconciliation work in OpenRefine. You can&hellip;</p>
+
+<ol>
+<li>Add a column by fetching URL&hellip; This is an option within the UI of
+an OpenRefine project that generates a HTTP GET request to an
+external data API and then posts the entire data response from that
+external API in a new column in your project. This method does take
+a really long time to execute, and it does require that you parse
+the data response for what you want to pull out in the OpenRefine
+UI. It does have some uses cases, however.</li>
+<li>There is the Standard Reconciliation API&hellip; which is a RESTful API
+built to negotiate between OpenRefine and external data. While there
+are examples and templates for building these APIs, it does require
+tinkering knowledge of API construction and the related programming
+language you&rsquo;ll be working with. These can be hosted for easier use
+in OpenRefine, or run locally for faster work.</li>
+<li>DERI RDF Extension&hellip; while this is no longer actively supported, it
+builds off of the Standard Recon Service API to work with RDF
+documents and SPARQL Endpoints in a similar way to the standard
+reconciliation API. For this to work, though, the RDF document you
+are reconciling is held in memory, meaning that the size of the RDF
+data will be limited to what OpenRefine can actually handle.
+Additionally, the SPARQL reconciliation is very much dependent
+currently on the SPARQL server details - for example, the Getty
+SPARQL endpoint is currently not able to work with this extension.</li>
+</ol>
+
+<h3 id="add-a-column-by-fetching-url">Add a column by fetching URL&hellip;</h3>
+
+<p>This option accesses an external data set by building an external data API query for each cell value in a chosen column in your OpenRefine projects. OpenRefine then issues a HTTP Get request to that URL/API Query, and stores the full result in a new column beside the seed column. This mostly works with RESTful APIs, as you cannot change or add to the HTTP request information beyond generating an API query as a URL. It also takes a long time to perform as there is an individual API call made for each cell with a value in the seed column.</p>
+
+<p>To use this method, find the column that contains the data you wish to query the external data API with, go to Top arrow &gt; Edit column &gt; Add column by fetching URLs. In the box that appears, you want to enter the appropriate GREL function(s) to create the API query URL with the cell values. Once you&rsquo;ve got that constructed, click on &lsquo;Add column&rsquo;, and wait as the calls issues/responses stored. This can take a while. Once it is complete, you&rsquo;ll have a new column with the response data, and you can use GREL on that column to parse the results for what you want to find.</p>
+
+<p>This method is useful if:</p>
+
+<ol>
+<li>You have data with very specific links or references to an external
+data API (such as a column of identifiers), and you want to pull in
+additional information using that.</li>
+<li>Don&rsquo;t have the time or comfort (yet) for constructing your own
+standard reconciliation API.</li>
+<li>Want to get a better feeling for how a data API works with your
+dataset as queries.</li>
+</ol>
+
+<p>To work with this method further in the break-outs, you can follow the
+procedures documented in the GitHub repo file &lsquo;addcolumnexamples.md&rsquo; or
+you can review the Mountain West Digital Library, a DPLA service hub,
+workflows working with this method and using the Geonames API. I&rsquo;ll warn
+you about the sample workflows included in the GitHub repo, they are
+based off legacy documentation that I wrote up for my last job when
+considering OpenRefine for reconciliation work. They are more of a
+proof-of-concept and the use cases modeled in there can be better
+handled elsewhere now. But they do walk you through this process.</p>
+
+<h3 id="standard-recon-service-api">Standard Recon Service API</h3>
+
+<p>The Standard Reconciliation Service API in OpenRefine takes the data you
+wish to reconcile from the OpenRefine UI, uses that to query an external
+data set (by either connecting to that external dataset&rsquo;s API or
+constructing another way to connect in your recon service API), performs
+auto-matching, ranking, and other work according to your specifications,
+then generates an OpenRefine reconciliation object, with required
+metadata, to return to the OpenRefine UI. This reconciliation object is
+used in the UI to create reconciliation options for each value, as well
+as offer to the OpenRefine user the ability to pull out the
+reconciliation IDs, names/labels, or other match factors (matched or
+not, ranking values).</p>
+
+<p>Another way to explain it is that the OpenRefine standard reconciliation
+API is a HTTP-based RESTful JSON-formatted API that connects the
+OpenRefine project to external datasets. It negotiates HTTP POST and GET
+requests between those. This API can be constructed in a number of
+languages and frameworks, though I primarily see use of python and the
+flask &lsquo;micro&rsquo;framework in the examples and templates I work with.</p>
+
+<p>This reconciliation service API work is originally built off of the
+Freebase extension in OpenRefine - and this Freebase extension no longer
+works. Because of this, however, there is a lot of Freebase-specific
+decisions in how we construct this API to work with OpenRefine, which
+we&rsquo;ll discuss as we go over the parts.</p>
+
+<h3 id="standard-reconciliation-service-api-parts">Standard Reconciliation Service API Parts</h3>
+
+<p>When building an OpenRefine standard reconciliation service API, you&rsquo;ll
+need to have a way:</p>
+
+<ul>
+<li>a reconciliation service endpoint &ndash; the URL that can handle HTTP
+GET from OpenRefine asking for information or data like the recon
+service information/metadata, can send HTTP GET requests to an
+external data source to get matches, can handle HTTP POST requests
+from that external data source or from OpenRefine with the original
+values to be reconciled, and sending a HTTP POST requests back to
+OpenRefine with the reconciliation objects.</li>
+<li>standard reconciliation service metadata: this defines how a
+reconciliation service API works in OpenRefine, as well as adding
+additional UI functionalities like preview boxes and further
+searching of an external data source in the OpenRefine UI itself.</li>
+<li>entity types. This is a holderover from Freebase, which also
+required things like that each reconciliation service only work in a
+chosen namespace (many of the recon service APIs you&rsquo;ll see don&rsquo;t
+have a relevant namespace). You can however use the entity types for
+other purposes, like defining how to use the same reconciliation
+service but choose between external data API search indices, or to
+choose in a reconciliation service what rdf:property to find in the
+DERI RDF extension reconciliation work.</li>
+<li>query/response handling: this is where you can construct the
+external data query, as well as decide what parts of the external
+data response should become then the id and name for the
+reconciliation object returned to OpenRefine. How this is performed
+is heavily dependent on the language you decide to construct your
+recon service API in, as well as the external data service you&rsquo;re
+querying.</li>
+<li>Other bells and whistles that&rsquo;ll we will discuss in looking at an
+example.</li>
+</ul>
+
+<h3 id="recon-service-api-metadata">Recon Service API Metadata</h3>
+
+<p>On the slide is a quote taken from the OpenRefine GitHub wiki
+documentation on the standard reconciliation service API. This lets us
+know that for each standard recon API we build, we are required to put
+in some basic service metadata. When setting a recon service up in the
+OpenRefine UI, OpenRefine will immediately send a request to the service
+API&rsquo;s endpoint and expect back a JSON object with &lsquo;name&rsquo;,
+&lsquo;identifierSpace&rsquo;, and &lsquo;schemaSpace&rsquo;. Again, these are largely based off
+of how this worked for Freebase, and often just putting something that
+serves your own data usecase is the best option.</p>
+
+<p>There are some other service metadata options that can be used,
+including metadata defining a preview window for a reconciliation object
+in OpenRefine, as well as building a way to query in OpenRefine that
+external data source. These are seen in the following example of a
+standard recon service API metadata. Note this example shows all the
+possible metadata options; the FAST reconciliation service, which we
+will check out in a minute, has just the minimum to get it up and
+running.</p>
+
+<h3 id="api-metadata-example-part-1">API Metadata Example Part 1</h3>
+
+<p>In this section you can see the required service metadata fields: the
+name, which will appear in the OpenRefine UI, the identifier space, and
+the schema space. The view is what builds the URL/URI for looking at the
+reconciliation match in the external data source&rsquo;s system. The preview
+array defines a pop out box in OpenRefine UI for seeing the
+reconciliation match in the external data source&rsquo;s interface.</p>
+
+<h3 id="api-metadata-example-part-2">API Metadata Example Part 2</h3>
+
+<p>In this section (separated just for slide space reasons), you can see
+the suggest array, which constructs a search further option within the
+OpenRefine UI but querying the external data source. Note that this
+search further option does required a type-ahead style search, as well
+as that the external data source has a API to query (or that you
+construct that in your API).</p>
+
+<p>Finally, the defaultTypes are for the entity types options discussed
+above, and will be defined in the recon service API used as an example
+below.</p>
+
+<h3 id="query-json-example">Query JSON Example</h3>
+
+<p>When OpenRefine is talking to the standard reconciliation service you
+build, here is a simple example of the JSON query object sent to the
+recon service API. This just has the query, pulled from the cell value,
+a limit for how many matches can be returned (this can be defined
+further in the service API), the entity type to query (here modeled to
+be the different search indices possible for the external data query),
+and type_strict field that I&rsquo;m not honestly sure what it does as the
+external data API does the matching and ranking for us.</p>
+
+<h3 id="reconciled-json-example">Reconciled JSON Example</h3>
+
+<p>And here is an example of the JSON reconciliation object returned from
+the API to OpenRefine post-reconciliation queries. This object has a
+result array with the required metadata of id, name, type, and match.
+The id and name are parsed from the external data response in our recon
+service API, the type is determined according to the original JSON query
+object sent to the recon service API by OpenRefine, and the match field
+is determined by us in the reconciliation service API (we can decide to
+match high-confidence results).</p>
+
+<p>Note that OpenRefine sends multiple queries and can receive multiple
+responses to/from the recon service API; I believe this still works in
+batches of 10, which is why this method is far more efficient than other
+methods of reconciliation.</p>
+
+<h3 id="entity-types">Entity Types</h3>
+
+<p>The entity types for reconciliation are usually determined by the
+external dataset you are working with, as this is a Freebase holdover.
+The example we will look like has used the entity type options to define
+queries to different indices in the FAST API. You can only select one
+entity type per reconciliation work on a column, however, you can rerun
+reconciliation work on a column multiple times.</p>
+
+<p>Let&rsquo;s take some time now to run through an example of using a
+Reconciliation Service in the OpenRefine interface, to get a feeling for
+how this works for the end user.</p>
+
+<p>[see this workshop&rsquo;s GitHub repo docs for a walk through of using a
+Recon Service]</p>
+
+<h3 id="standard-reconciliation-service-api-templates">Standard Reconciliation Service API Templates</h3>
+
+<p>Alright, if just getting a handle on how OpenRefine handles
+reconciliation and talking with an external API is enough to take on,
+some great developers have helped with the API construction part. There
+are some standard OpenRefine reconciliation service API templates you
+can use to then plug in information about a particular data API then
+test. This lets you get a recon service API up and running with limited
+time, OpenRefine, and programming knowledge.</p>
+
+<p>Most of the templates/examples use python with flask, which is what we
+will be reviewing. There are examples of python with django, as well as
+PHP, if you&rsquo;re interested I can point those out to you.</p>
+
+<h3 id="standard-reconciliation-service-examples">Standard Reconciliation Service Examples</h3>
+
+<p>All of the following links are given in the GitHub repo&rsquo;s
+reconServiceAPI.md file.</p>
+
+<ul>
+<li>The FAST Reconciliation Service, using python and flask and not
+hosted (so you will have to run the API application locally before
+querying in OpenRefine). This queries data using the OCLC FAST API,
+with options for querying different indices. It does also use a
+text.py file for normalizing the OpenRefine queries before sending
+them off to the OCLC FAST API; this is not required for building an
+OpenRefine reconciliation service API, but can be very, very helpful
+in boosting matches.
+
+<ul>
+<li>If you look at the GitHub repository for this workshop, you&rsquo;ll
+see &lsquo;pythonflaskmarkedupexample.md&rsquo;. This is the heart of this
+reconciliation service, but with my extended comments explaining
+what is happening. I&rsquo;ll walk through this here and also with
+folks who need help in break outs.</li>
+</ul></li>
+<li>LCNAF - VIAF Reconciliation Service - this has both hosted and
+non-hosted options for reconciliation with the LCNAF through the use
+of the OCLC VIAF API (note that means this can only match to a
+subset of the LCNAF, as VIAF just contains personal names). This I
+<em>think</em> uses django, but it is definitely constructed in python and
+work exploring.</li>
+<li>VIAF Reconciliation Service Example - this reconciliation service
+API is currently hosted, and you&rsquo;d need to do some work to run it
+locally. It is built in PHP, and for the link in the examples file,
+it is for the whole site, a part of which is this hosted
+reconciliation service. Look for the viaf.php file in that example
+link to see how it is built.</li>
+<li>Linked in the reconServiceAPI.md file are also a basic and an
+extended python/flask template for an OpenRefine standard recon
+service API.</li>
+</ul>
+
+<p>The marked up FAST recon service API example is built off of the basic
+python/flask template linked to.</p>
+
+<p>Now to walk through pythonflaskmarkedupexample.md and take questions.</p>
+
+<p>(just see the file for the comments)</p>
+
+<h3 id="deri-rdf-extension-recon">DERI RDF Extension Recon</h3>
+
+<p>This again can be used to reconcile against SPARQL Endpoints and RDF
+data. While it is no longer actively supported, and it has the issues I
+outlined previously, it can still be very helpful. For one example, I&rsquo;ve
+generated a very simple RDF document for the subset of LC Genre Terms we
+use at my job for our form terms. I can then reconcile our form metadata
+against that RDF doc and normalize, pull in URIs, and link.</p>
+
+<p>I&rsquo;m not going to discuss this extensively, but if you want to work on
+this in a breakout, I&rsquo;ve included a file in the workshop GitHub
+repository that walks through using the extension to reconcile against a
+RDF document downloaded from the Library of Congress Linked Data
+Service. I would recommend that you take a look at the refine.deri.ie
+documentation, which is good but brief and not library data-specific.</p>
+
+<h3 id="breakouts">Breakouts</h3>
+
+<p>So now, you guys can work on whatever was discussed or something
+completely different with my help. There is some starter documentation
+in the GitHub repo, but a lot of how I&rsquo;ve built these recon services and
+service workflows in the past has been a lot of trial and error. We&rsquo;ll
+pull together towards the end to take questions.</p>
+
+<h3 id="links-contact">Links + Contact</h3>
+
+<p>Some helpful links for this work, as well as my Twitter handle. Please
+hit me up with questions or improvements to this workshop.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6">
+        
+      </div>
+    </main>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://cmh2166.github.com/" >
+    &copy; 2018 Christina Harlow: Data Lackey
+  </a>
+    <div>
+
+
+
+  <a href="https://twitter.com/cm_harlow" class="link-transition twitter link dib z-999 pt3 pt0-l mr2" title="Twitter link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+  <a href="https://instagram.com/burrito_report/" class="link-transition instagram link dib z-999 pt3 pt0-l mr2" title="Instagram link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.271,26.578v-0.006c0.502,0,1.005,0.01,1.508-0.002  c0.646-0.017,1.172-0.57,1.172-1.217c0-0.963,0-1.927,0-2.89c0-0.691-0.547-1.24-1.236-1.241c-0.961,0-1.922-0.001-2.883,0  c-0.688,0.001-1.236,0.552-1.236,1.243c-0.001,0.955-0.004,1.91,0.003,2.865c0.001,0.143,0.028,0.291,0.073,0.426  c0.173,0.508,0.639,0.82,1.209,0.823C41.344,26.579,41.808,26.578,42.271,26.578z M33,27.817c-3.384-0.002-6.135,2.721-6.182,6.089  c-0.049,3.46,2.72,6.201,6.04,6.272c3.454,0.074,6.248-2.686,6.321-6.043C39.254,30.675,36.462,27.815,33,27.817z M21.046,31.116  v0.082c0,4.515-0.001,9.03,0,13.545c0,0.649,0.562,1.208,1.212,1.208c7.16,0.001,14.319,0.001,21.479,0  c0.656,0,1.215-0.557,1.215-1.212c0.001-4.509,0-9.02,0-13.528v-0.094h-2.912c0.411,1.313,0.537,2.651,0.376,4.014  c-0.161,1.363-0.601,2.631-1.316,3.803s-1.644,2.145-2.779,2.918c-2.944,2.006-6.821,2.182-9.946,0.428  c-1.579-0.885-2.819-2.12-3.685-3.713c-1.289-2.373-1.495-4.865-0.739-7.451C22.983,31.116,22.021,31.116,21.046,31.116z   M45.205,49.255c0.159-0.026,0.318-0.049,0.475-0.083c1.246-0.265,2.264-1.304,2.508-2.557c0.025-0.137,0.045-0.273,0.067-0.409  V21.794c-0.021-0.133-0.04-0.268-0.065-0.401c-0.268-1.367-1.396-2.428-2.78-2.618c-0.058-0.007-0.113-0.02-0.17-0.03H20.761  c-0.147,0.027-0.296,0.047-0.441,0.08c-1.352,0.308-2.352,1.396-2.545,2.766c-0.008,0.057-0.02,0.114-0.029,0.171V46.24  c0.028,0.154,0.05,0.311,0.085,0.465c0.299,1.322,1.427,2.347,2.77,2.52c0.064,0.008,0.13,0.021,0.195,0.03H45.205z M33,64  C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+
+  <a href="https://www.linkedin.com/in/christina-harlow-48797b18/" class="link-transition linkedin link dib z-999 pt3 pt0-l mr2" title="LinkedIn link">
+    <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+  </a>
+
+
+  <a href="http://github.com/cmh2166/" class="link-transition github link dib z-999 pt3 pt0-l mr2" title="Github link">
+    <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+  </a>
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

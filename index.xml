@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Christina Harlow: Data Lackey</title>
+    <link>https://cmh2166.github.com/</link>
+    <description>Recent content on Christina Harlow: Data Lackey</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Oct 2015 18:52:50 -0700</lastBuildDate>
+    
+	<atom:link href="https://cmh2166.github.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>six presentations in seven days</title>
+      <link>https://cmh2166.github.com/posts/six-presentations-in-seven-days/</link>
+      <pubDate>Tue, 27 Oct 2015 18:52:50 -0700</pubDate>
+      
+      <guid>https://cmh2166.github.com/posts/six-presentations-in-seven-days/</guid>
+      <description>So I have a lot I want to be writing up more on this blog, and I have tons of ideas/essays/half-done projects that should be added here, but I&amp;rsquo;ve been busy with a lot of other things, I&amp;rsquo;m afraid. I&amp;rsquo;ve got a Code4Lib Journal article that just came out (which I&amp;rsquo;m both excited and nervous about, more nervous it will not be techy enough or full of lacunae I missed).</description>
+    </item>
+    
+    <item>
+      <title>notes on being a metadata supervisor</title>
+      <link>https://cmh2166.github.com/posts/notes-on-being-a-metadata-supervisor/</link>
+      <pubDate>Wed, 23 Sep 2015 18:52:50 -0700</pubDate>
+      
+      <guid>https://cmh2166.github.com/posts/notes-on-being-a-metadata-supervisor/</guid>
+      <description>I&amp;rsquo;ve been meaning to write this post up for a while. It is still very much a work in progress, so please forgive the winding, rambling nature this post will take. I&amp;rsquo;m trying to pull together and process ideas and experiences that I can eventually use in my own improvement, or maybe as an essay or article proposal on &amp;lsquo;reskilling catalogers&amp;rsquo; and how it is part of a larger re-imagining of library metadata work beyond just teaching catalogers to code or calling cataloging &amp;lsquo;metadata&amp;rsquo;.</description>
+    </item>
+    
+    <item>
+      <title>moving beyond authorities accessyyz speaker notes</title>
+      <link>https://cmh2166.github.com/posts/moving-beyond-authorities-accessyyz-speaker-notes/</link>
+      <pubDate>Wed, 09 Sep 2015 18:52:50 -0700</pubDate>
+      
+      <guid>https://cmh2166.github.com/posts/moving-beyond-authorities-accessyyz-speaker-notes/</guid>
+      <description>Here is a post that details some thoughts and experiences that lead to my short slides and other speaking notes for the Navigating Linked Data panel given at the Access YYZ conference. This was originally envisioned as a sort of interactive workshop, since I&amp;rsquo;ve learned a lot of this by tinkering, so forgive me if it flows a bit awkwardly in place. It was wrapped into a panel to give a better range of projects and approaches, which I&amp;rsquo;m excited about.</description>
+    </item>
+    
+    <item>
+      <title>openrefine reconciliation workshop c4lmdc</title>
+      <link>https://cmh2166.github.com/posts/openrefine-reconciliation-workshop-c4lmdc/</link>
+      <pubDate>Wed, 12 Aug 2015 18:52:50 -0700</pubDate>
+      
+      <guid>https://cmh2166.github.com/posts/openrefine-reconciliation-workshop-c4lmdc/</guid>
+      <description>Here are my slides, handouts, and other information from a OpenRefine Reconciliation Workshop given at the Code4Lib Maryland, DC, and Commonwealth of Virginia 2015 meeting. I want to make them available for others who may be interested in the topic, or those who attended (since this is a lot of information to cover in one workshop). It was built off of experimentation for particular use cases from a data munger&amp;rsquo;s viewpoint, not a developer&amp;rsquo;s viewpoint, so any corrections, updates, or additions are very much welcome.</description>
+    </item>
+    
+    <item>
+      <title>what is linked data part 2</title>
+      <link>https://cmh2166.github.com/posts/what-is-linked-data-part-2/</link>
+      <pubDate>Thu, 30 Jul 2015 18:52:50 -0700</pubDate>
+      
+      <guid>https://cmh2166.github.com/posts/what-is-linked-data-part-2/</guid>
+      <description>In an earlier post, I gave a quick and highly subjective introduction to Linked Data. What will follow are a series of posts detailing some use cases and workflows that follow Linked Data principles, since I best learn and understand via example.
+The example in this post as well as many of the future posts on Linked Data workflows will useOpenRefine with the DERI RDF extension. If you already have OpenRefine installed, you can just download and install the RDF extension at http://refine.</description>
+    </item>
+    
+    <item>
+      <title>walkthrough of geonames recon service</title>
+      <link>https://cmh2166.github.com/posts/walkthrough-of-geonames-recon-service/</link>
+      <pubDate>Wed, 29 Jul 2015 18:52:50 -0700</pubDate>
+      
+      <guid>https://cmh2166.github.com/posts/walkthrough-of-geonames-recon-service/</guid>
+      <description>This came out of documentation I was writing up for staff here at UTK. I apologize if it is too UTK-workflow specific.
+ I&amp;rsquo;m working currently on migrating a lot of our non-MARC metadata collections from older platforms using a kind of simple Dublin Core to MODS/XML (version 3.5, we&amp;rsquo;re currently looking at 3.6) that will be ingested into Islandora. That &amp;lsquo;kind of simple Dublin Core&amp;rsquo; should be taken as: there was varying levels of metadata oversight over the years, and folks creating the metadata had different interpretations of the Dublin Core schema - a well-documented and well-known issue/consideration for working with such a general/flexible schema.</description>
+    </item>
+    
+    <item>
+      <title>ada lovelace, math and dpla</title>
+      <link>https://cmh2166.github.com/posts/ada-lovelace-math-and-dpla/</link>
+      <pubDate>Tue, 21 Jul 2015 18:52:50 -0700</pubDate>
+      
+      <guid>https://cmh2166.github.com/posts/ada-lovelace-math-and-dpla/</guid>
+      <description>Yesterday, Patrick Murray-John had a great suggestion on Twitter: a DPLA event celebrating Ada Lovelace day:
+Idea: a @dpla building/hackathon thingy around Ada Lovelace day. Anyone done that? Ideas? #DPLAdaLovelace
+&amp;mdash; Patrick Murray-John (@patrick_mj) July 21, 2015 
+In case you don&amp;rsquo;t know much about Ada Lovelace, an English mathematician in the early 19th century and the namesake of the awesome Ada Initiative, or perhaps you don&amp;rsquo;t know about the Ada Lovelace Day, check out this site: http://findingada.</description>
+    </item>
+    
+    <item>
+      <title>thoughts on geospatial metadata</title>
+      <link>https://cmh2166.github.com/posts/thoughts-on-geospatial-metadata/</link>
+      <pubDate>Mon, 20 Jul 2015 18:52:50 -0700</pubDate>
+      
+      <guid>https://cmh2166.github.com/posts/thoughts-on-geospatial-metadata/</guid>
+      <description>I recently decided I need to spend some time after each work day writing up my thoughts on work stuff. If nothing else, these can serve as an outlet and time for improved pondering. So please forgive the winding, rambling nature these posts will take. From these, however, I hope to find little nuggets of ideas that I can actually take and make into decent presentations, workshops, articles, whatever.</description>
+    </item>
+    
+    <item>
+      <title>introduction to metadata and cataloging</title>
+      <link>https://cmh2166.github.com/posts/introduction-to-metadata-and-cataloging/</link>
+      <pubDate>Sun, 30 Nov 2014 18:52:50 -0700</pubDate>
+      
+      <guid>https://cmh2166.github.com/posts/introduction-to-metadata-and-cataloging/</guid>
+      <description>The following notes were created for 1 class of Library Science 653, taught by Dr. Starr Hoffman for Pratt Institute School of Library and Information Science. I had a wonderful time visiting with the class and talking through some high-level issues with cataloging and metadata as well as going through a record in detail. The original notes shared with the class are available at this Google Document: http://bit.ly/lis653
+In this blog post, I have cleaned up those notes a bit as well as created some screencasts reviewing some of what we covered as well as what we did not have time to cover in depth.</description>
+    </item>
+    
+    <item>
+      <title>what is linked data part 1</title>
+      <link>https://cmh2166.github.com/posts/what-is-linked-data-part-1/</link>
+      <pubDate>Sun, 14 Sep 2014 18:52:50 -0700</pubDate>
+      
+      <guid>https://cmh2166.github.com/posts/what-is-linked-data-part-1/</guid>
+      <description>Last weekend, I got to attend the NYC Archives Unconference (held by the wonderful archivists at Barnard College). It was a great day, although I admit that I skipped out at points to work on Columbia’s test BIBFRAME Editor (more on that later). In a minute of cheek, I proposed to lead a session on Linked Data - and I hoped it would be the kind of Linked Data session that I’m always looking for, by which I mean one based on real world examples.</description>
+    </item>
+    
+  </channel>
+</rss>

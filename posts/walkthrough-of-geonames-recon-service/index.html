@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Christina Harlow: Data Lackey  | walkthrough of geonames recon service</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.49" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.e08a958ae3e530145318b6373195c765.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="walkthrough of geonames recon service" />
+<meta property="og:description" content="This came out of documentation I was writing up for staff here at UTK. I apologize if it is too UTK-workflow specific.
+ I&rsquo;m working currently on migrating a lot of our non-MARC metadata collections from older platforms using a kind of simple Dublin Core to MODS/XML (version 3.5, we&rsquo;re currently looking at 3.6) that will be ingested into Islandora. That &lsquo;kind of simple Dublin Core&rsquo; should be taken as: there was varying levels of metadata oversight over the years, and folks creating the metadata had different interpretations of the Dublin Core schema - a well-documented and well-known issue/consideration for working with such a general/flexible schema." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cmh2166.github.com/posts/walkthrough-of-geonames-recon-service/" /><meta property="article:published_time" content="2015-07-29T18:52:50-07:00"/>
+<meta property="article:modified_time" content="2015-07-29T18:52:50-07:00"/>
+
+<meta itemprop="name" content="walkthrough of geonames recon service">
+<meta itemprop="description" content="This came out of documentation I was writing up for staff here at UTK. I apologize if it is too UTK-workflow specific.
+ I&rsquo;m working currently on migrating a lot of our non-MARC metadata collections from older platforms using a kind of simple Dublin Core to MODS/XML (version 3.5, we&rsquo;re currently looking at 3.6) that will be ingested into Islandora. That &lsquo;kind of simple Dublin Core&rsquo; should be taken as: there was varying levels of metadata oversight over the years, and folks creating the metadata had different interpretations of the Dublin Core schema - a well-documented and well-known issue/consideration for working with such a general/flexible schema.">
+
+
+<meta itemprop="datePublished" content="2015-07-29T18:52:50-07:00" />
+<meta itemprop="dateModified" content="2015-07-29T18:52:50-07:00" />
+<meta itemprop="wordCount" content="3454">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="walkthrough of geonames recon service"/>
+<meta name="twitter:description" content="This came out of documentation I was writing up for staff here at UTK. I apologize if it is too UTK-workflow specific.
+ I&rsquo;m working currently on migrating a lot of our non-MARC metadata collections from older platforms using a kind of simple Dublin Core to MODS/XML (version 3.5, we&rsquo;re currently looking at 3.6) that will be ingested into Islandora. That &lsquo;kind of simple Dublin Core&rsquo; should be taken as: there was varying levels of metadata oversight over the years, and folks creating the metadata had different interpretations of the Dublin Core schema - a well-documented and well-known issue/consideration for working with such a general/flexible schema."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://cmh2166.github.com/" class="f3 fw2 hover-white no-underline white-90 dib">
+      Christina Harlow: Data Lackey
+    </a>
+    <div class="flex-l items-center">
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="about page">
+              about
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/work/" title="work page">
+              work
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+  <a href="https://twitter.com/cm_harlow" class="link-transition twitter link dib z-999 pt3 pt0-l mr2" title="Twitter link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+  <a href="https://instagram.com/burrito_report/" class="link-transition instagram link dib z-999 pt3 pt0-l mr2" title="Instagram link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.271,26.578v-0.006c0.502,0,1.005,0.01,1.508-0.002  c0.646-0.017,1.172-0.57,1.172-1.217c0-0.963,0-1.927,0-2.89c0-0.691-0.547-1.24-1.236-1.241c-0.961,0-1.922-0.001-2.883,0  c-0.688,0.001-1.236,0.552-1.236,1.243c-0.001,0.955-0.004,1.91,0.003,2.865c0.001,0.143,0.028,0.291,0.073,0.426  c0.173,0.508,0.639,0.82,1.209,0.823C41.344,26.579,41.808,26.578,42.271,26.578z M33,27.817c-3.384-0.002-6.135,2.721-6.182,6.089  c-0.049,3.46,2.72,6.201,6.04,6.272c3.454,0.074,6.248-2.686,6.321-6.043C39.254,30.675,36.462,27.815,33,27.817z M21.046,31.116  v0.082c0,4.515-0.001,9.03,0,13.545c0,0.649,0.562,1.208,1.212,1.208c7.16,0.001,14.319,0.001,21.479,0  c0.656,0,1.215-0.557,1.215-1.212c0.001-4.509,0-9.02,0-13.528v-0.094h-2.912c0.411,1.313,0.537,2.651,0.376,4.014  c-0.161,1.363-0.601,2.631-1.316,3.803s-1.644,2.145-2.779,2.918c-2.944,2.006-6.821,2.182-9.946,0.428  c-1.579-0.885-2.819-2.12-3.685-3.713c-1.289-2.373-1.495-4.865-0.739-7.451C22.983,31.116,22.021,31.116,21.046,31.116z   M45.205,49.255c0.159-0.026,0.318-0.049,0.475-0.083c1.246-0.265,2.264-1.304,2.508-2.557c0.025-0.137,0.045-0.273,0.067-0.409  V21.794c-0.021-0.133-0.04-0.268-0.065-0.401c-0.268-1.367-1.396-2.428-2.78-2.618c-0.058-0.007-0.113-0.02-0.17-0.03H20.761  c-0.147,0.027-0.296,0.047-0.441,0.08c-1.352,0.308-2.352,1.396-2.545,2.766c-0.008,0.057-0.02,0.114-0.029,0.171V46.24  c0.028,0.154,0.05,0.311,0.085,0.465c0.299,1.322,1.427,2.347,2.77,2.52c0.064,0.008,0.13,0.021,0.195,0.03H45.205z M33,64  C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+
+  <a href="https://www.linkedin.com/in/christina-harlow-48797b18/" class="link-transition linkedin link dib z-999 pt3 pt0-l mr2" title="LinkedIn link">
+    <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+  </a>
+
+
+  <a href="http://github.com/cmh2166/" class="link-transition github link dib z-999 pt3 pt0-l mr2" title="Github link">
+    <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+  </a>
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  <article class="flex-l flex-wrap justify-between mw8 center ph3 ph0-l">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        POSTS
+      </p>
+      <h1 class="f1 athelas mb1">walkthrough of geonames recon service</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-07-29T18:52:50-07:00">July 29, 2015</time>
+    </header>
+
+    <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
+
+<blockquote>
+<p>This came out of documentation I was writing up for staff here at UTK.
+I apologize if it is too UTK-workflow specific.</p>
+</blockquote>
+
+<p>I&rsquo;m working currently on migrating a lot of our non-MARC metadata collections from older platforms using a kind of simple Dublin Core to MODS/XML (version 3.5, we&rsquo;re currently looking at 3.6) that will be ingested into Islandora. That &lsquo;kind of simple Dublin Core&rsquo; should be taken as: there was varying levels of metadata oversight over the years, and folks creating the metadata had different interpretations of the Dublin Core schema - a well-documented and well-known issue/consideration for working with such a general/flexible schema. Yes, there are guidelines from DCMI, but for on-the-ground work, if there is no overarching metadata application profile to guide and nobody with some metadata expertise (or investment) to verify that institution-wide, descriptive (or any type, for that matter) metadata fields are being used consistently, it is no surprise that folks will interpret metadata fields in different ways with an eye to their own collection/context. This issue increases when metadata collections grow over time, occur with little to no documentation, and a lot of the metadata creation is handed off to content specialists, who might then hand it off to their student workers. If you are actually reading my thoughts right now, well thanks, but also you probably know the situation I&rsquo;m describing well.</p>
+
+<p>Regardless, I&rsquo;m not here to talk about why I think my job is important, but rather about a very particular but useful procedure and tool that make up my general migration/remediation work, which also happens to be something I&rsquo;m using and documenting right now for UTK cataloger reskilling purposes. I have been working with some of the traditional MARC catalogers to help with this migration process, and so far the workflow is something like this:</p>
+
+<ol>
+<li>I pull the original DC (or other) data, either from a csv file stored somewhere, or, preferably, from an existing OAI-PMH DC/XML feed for collections in (soon to be legacy) platforms. This data is stored in a GitHub repository [See note below] as the original data for both version control and &ldquo;But we didn&rsquo;t write this&rdquo; verification purposes.</li>
+<li>A cleaned data directory is made in that GitHub repo, where I put a remediation files subdirectory. I will review the original data, see if an existing, documented mapping makes sense (unfortunately, each collection usually requires separate mapping/handling), and pull the project into OpenRefine. In OpenRefine, I&rsquo;ll do a preliminary &lsquo;mapping&rsquo; (rename columns, review the data to verify my mapping as best I can without looking at the digitized objects due to time constraints). At this point, I will also note what work needs to be done in particular for that dataset. I&rsquo;ll export that OpenRefine project and put it into the GitHub repo remediation files subdirectory, and also create or update the existing wiki documentation page for that collection.</li>
+<li>At this point, I will hand off the OpenRefine project to one of the catalogers currently working on this metadata migration project. They are learning OpenRefine from scratch but doing a great job of getting the hang of both the tool and the mindset for batch metadata work. I will tell them some of the particular points they need to work on for that dataset, but also they are trained to check that the mapping holds according to the UTK master MODS data dictionary and MAP, as well as that controlled access points have appropriate terms taken from the selected vocabularies/ontologies/etc. that we use. With each collection they complete, I&rsquo;m able to give them a bit more to handle with the remediation work, which has been great.</li>
+<li>Once the catalogers are done with their remediation work/data verification, I&rsquo;ll take that OpenRefine project they worked on, bring it back into OpenRefine on my computer, and run some of the reconciliation services for pulling in URIs/other related information we are currently capturing in our MODS/XML. One of the catalogers is starting to run some of these recon services herself, but it is something I&rsquo;m handing over slowly because there is a lot of nuance/massaging to some of these services, and the catalogers working on this project only currently do so about 1 day a week (so it takes longer to get a feeling for this).</li>
+<li>I review, do some reconciliation stuff, get the complex fields together that need to be for the transform, then export as simple XML, take that simple XML and use my UTK-standard OpenRefine XML to MODS/XML XSLT to generate MODS/XML, then run encoding/well-formed/MODS validation checks on that set of MODS/XML files.</li>
+<li>Then comes the re-ingest to Islandora part, but this is already beyond the scope of what I meant this post to be.</li>
+</ol>
+
+<p>*GitHub Note: I can hear someone now: &lsquo;Git repositories/GitHub is not made for data storage!&rsquo; Yes, yes, I know, I know. It&rsquo;s a cheat. But I&rsquo;m putting these things under version control for my own verification purposes, as well as using GitHub because it has a nice public interface I can point to whenever a question comes up about &lsquo;What happened to this datapoint&rsquo; (and those questions do come up). I don&rsquo;t currently, but I have had really good luck with using the Issues component of GitHub too for guiding/centralizing discussion about a dataset. Using GitHub also has had the unintended but helpful consequence of highlighting to content specialists who are creating the metadata just why we need metadata version control, and why the metadata updates get frozen during the review, enhancement and ingest process (and after that, metadata edits can only happen in the platform). But, yes, GitHub was not made for this, I know. Maybe we need dataHub. Maybe there is something else I <em>should</em> be using. Holla if you know what that is.*</p>
+
+<p>Okay, so I&rsquo;m in step 4 right now, with a dataset that was a particular pain to remediate/migrate because the folks who did the grouping/digitization pulled together a lot of different physical objects into one digital object. This is basically the digital equivalent of &lsquo;bound-withs&rsquo;. However, the cataloger who did some of the remediation did a great job of finding, among other datapoints, the subject_geographic terms, getting them to subject_geographic, and normalizing the datapoint to a LCNAF/LCSH heading where possible. I&rsquo;m about to take this and run my OpenRefine Geonames recon service against it to pull in coordinates for these geographic headings where possible. As folks seem to be interested in that recon service, I&rsquo;m going to walk through that process here and now with this real life dataset.</p>
+
+<h2 id="where-i-stop-blabbing-and-talk-about-geonames-recon-service-finally">WHERE I STOP BLABBING AND TALK ABOUT GEONAMES RECON SERVICE FINALLY</h2>
+
+<p>So here is that ready-for-step-4 dataset in LODRefine (Linked Open Data Refine, or OpenRefine with some Linked Data extensions baked in; I need to write more about that later):</p>
+
+<p><a href="/images/lodrefine_bass.png"><img src="/images/lodrefine_bass.png" alt="Metadata in LODRefine" /></a></p>
+
+<p>You can see from that portion a bit of what work is going on here. What I&rsquo;m going to target in on right now is the subject_geographic column, which has multiple values per record (records in this instance are made up of a number of rows. This helps centralize the reconciliation work, but will need to be changed to 1 record = 1 row before pulling out for XML transformations). Here is the column, along with a text facet view to see the values we will be reconciling against Geonames:</p>
+
+<p><a href="/images/bass_subj_geo_facet.png"><img src="/images/bass_subj_geo_facet.png" alt="LODRefine Geographic Text Facet" /></a></p>
+
+<p>Look at those wonderfully consistent geographic terms, thanks to the cataloger&rsquo;s work! But, some have LoC records and URIs, some don&rsquo;t, some maybe have Geonames records (and so coordinates), some might not&hellip; so let&rsquo;s go ahead and reconcile with Geonames first. To use the Geonames service, I already have a copy of the Geonames Recon Service on my computer, and I have updated my local machine&rsquo;s code to have my own private Geonames API name. See more here: <a href="https://github.com/cmh2166/geonames-reconcile">https://github.com/cmh2166/geonames-reconcile</a>.</p>
+
+<p>I&rsquo;m then going to a CLI (on my work computer, just plain old Mac Terminal),</p>
+
+<p><a href="/images/terminal_bash.png"><img src="/images/terminal_bash.png" alt="Mac Terminal &amp; Bash" /></a></p>
+
+<p>change to the directory where I have my local Geonames recon service code stored,</p>
+
+<p><a href="/images/terminal_cd_geonames.png"><img src="/images/terminal_cd_geonames.png" alt="Mac Terminal CD to Geonames directory" /></a></p>
+
+<p>then type in the command &lsquo;python reconcile.py &ndash;debug&rsquo;. The Geonames endpoint should fire up on your computer now. You may get some warning notes like I have below, which means I need to do some updating to this recon service or to my computer&rsquo;s dependencies installation (but am going to ignore for time being while recon service still works because, well, time is at a premium).</p>
+
+<p><a href="/images/terminal_geonames_run_with_warnings.png"><img src="/images/terminal_geonames_run_with_warnings.png" alt="Terminal with Geonames flask app running" /></a></p>
+
+<p>Note, during all of this, I already have LODRefine running in a separate terminal and the LODRefine GUI in my browser.</p>
+
+<p><a href="/images/lodrefine_terminal.png"><img src="/images/lodrefine_terminal.png" alt="LODRefine running in terminal" /></a></p>
+
+<p>Alright, with all that running, lets hop back to our web browser window where LODRefine GUI is running with my dataset up. I&rsquo;ve already added this Geonames as a reconciliation service, but in case you haven&rsquo;t, you would still go first to the dropdown arrow for any column (I&rsquo;m using the column I want to reconcile here, subject_geographic), then to Reconcile &gt; Start Reconciling.</p>
+
+<p><a href="/images/lodrefine_dropdown_reconcile.png"><img src="/images/lodrefine_dropdown_reconcile.png" alt="LODRefine drop-down menu to reconcile" /></a></p>
+
+<p>A dialog box like this should pop up:</p>
+
+<p><a href="/images/lodrefine_recon_dialog_box.png"><img src="/images/lodrefine_recon_dialog_box.png" alt="LODRefine reconcile dialog box" /></a></p>
+
+<p>I&rsquo;ve already got GeoNames Reconciliation Service added, but if you don&rsquo;t, click on &lsquo;Add Standard Service&rsquo; (in the bottom left corner), then add the localhost URL that the Geonames python flask app you started up in the Terminal before is running on (for me and most standard set ups, this will be <a href="http://0.0.0.0:5000/reconcile)">http://0.0.0.0:5000/reconcile)</a>:</p>
+
+<p><a href="/images/lodrefine_add_standard_recon_service.png"><img src="/images/lodrefine_add_standard_recon_service.png" alt="LODRefine add recon service dialog box with URL input" /></a></p>
+
+<p>I will cancel out of that because I already have it running, and then click on the existing GeoNames Reconciliation Service in the &lsquo;Reconcile column&rsquo; dialog box. If you just added the service, you should have the same thing as me showing now upon adding the service:</p>
+
+<p><a href="/images/lodrefine_geonames_recon_option.png"><img src="/images/lodrefine_geonames_recon_option.png" alt="LODRefine Geonames reconciliation options" /></a></p>
+
+<p>There are a few type options to choose from:</p>
+
+<ul>
+<li><code>geonames/name</code> = search for the cells&rsquo; text just in the names field in a Geonames record</li>
+<li><code>geonames/name_startWith</code> = search for Geonames records where the label starts with the cells&rsquo; text</li>
+<li><code>geonames/name_equals</code> = search for an exact match between the Geonames records and the cells&rsquo; text</li>
+<li><code>geonames/all</code> = just do keyword search of Geonames records with our cells&rsquo; text.</li>
+</ul>
+
+<p>Depending on the original data you are working with, the middle two options can return much more accurate results for your reconciliation work. However, because these are LoC-styled headings (with the mismatching of headings style with Geonames I&rsquo;ve <a href="http://christinaharlow.com/thoughts-on-geospatial-metadata/">described recently</a> in other posts as well as in the <a href="https://github.com/cmh2166/geonames-reconcile/blob/master/README.md">README.md for this Geonames Recon code</a>), I&rsquo;m going to go with geonames/all. If you haven&rsquo;t read those other thoughts, basically, the Geonames name for Richmond, Virginia is just &lsquo;Richmond&rsquo;, with Virginia, United States, etc. noted instead in the hierarchy portion of the record. This makes sense but makes for bad matching with LoC-styled headings. Additionally, the fact that a lot of these geographic headings refer to archaeological dig sites and not cities/towns/other geopolitical entities also means a keyword search will return better results (in that it will return results at all).</p>
+
+<p><em>Sidenote: See that &lsquo;Also use relevant details from other columns&rsquo; part? This is something I&rsquo;d love to use for future enhancements to this recon service (maybe refer to hierarchical elements there?) as well as part of a better names (either LCNAF or VIAF) recon service I&rsquo;m wanting to work more on. Names, in particular, personal names and reconciliation is a real nightmare right now.</em></p>
+
+<p>Alright, so I select &lsquo;geonames/all&rsquo; then I click on the &lsquo;Start reconciling&rsquo; button in the bottom right corner. Up should pop a yellow notice that reconciliation is happening. Unfortunately, you can&rsquo;t do more LODRefine work while that is occuring, and depending on your dataset size, it might take a while. However, one of the benefits of using this reconciliation service (versus a few others ways that exist for reconciliation against an API in LODRefine) is speed.</p>
+
+<p><a href="/images/lodrefine_geonames_running.png"><img src="/images/lodrefine_geonames_running.png" alt="LODRefine note that reconciliation service is running" /></a></p>
+
+<p>Once the reconciliation work is done, up should pop a few more facet boxes in LODRefine - the judgement and the best candidate&rsquo;s score boxes, as well as the matches found as hyperlinked options below each cell in the column. Any cell with a value considered a high score match to a Geonames value will be associated with and hyperlinked to that Geonames value automatically.</p>
+
+<p><a href="/images/lodrefine_geonames_done.png"><img src="/images/lodrefine_geonames_done.png" alt="Geonames reconciliation done in LODRefine" /></a></p>
+
+<p>Before going through matches and choosing the correct ones where needed, I recommend you change the LODRefine view from rows to records - as long as the column you are reconciling in <em>is not the first column</em>. Changing from records to rows then editing the first column means that, once you go back to records view, the records groupings may have changed and no longer be what you intent. But for any other column, the groupings remain intact.</p>
+
+<p><a href="/images/lodrefine_records_to_rows.png"><img src="/images/lodrefine_records_to_rows.png" alt="LODRefine records to rows buttons" /></a></p>
+
+<p>Also, take a second to look at the Terminal again where Geonames is running. You should see a bunch of lines showing the API query URLs used for each call, as well as a 200 response when a match is found (I&rsquo;m not going to show you this on my computer as each API call has my personal Geonames API name/key in it). Just cool to see this, I think.</p>
+
+<p>Back to the work in LODRefine, I&rsquo;m going to first select to facet the results with judgement:none and then unselect &lsquo;error&rsquo; in the best candidate&rsquo;s score facet box.</p>
+
+<p><a href="/images/lodrefine_geonames_facets_review.png"><img src="/images/lodrefine_geonames_facets_review.png" alt="LODRefine geonames reconciliation facet boxes" /></a></p>
+
+<p>If you&rsquo;re looking at this and thinking &lsquo;1 match? that is not really good&rsquo;, well&hellip;</p>
+
+<ol>
+<li>yes, there are definite further improvements needed to have Geonames and LoC-styled headings work better together, but&hellip;</li>
+<li>library data has a much, much higher bar for this sort of batch work and the resultant quality/accuracy expected, so 1 auto-determined match in a set of geographic names focused on perhaps not well known archaeological sites is okay with me.\ Plus, the Geonames recon service is not done helping us yet.</li>
+</ol>
+
+<p>Now you should have a list of cells with linked options below each value:</p>
+
+<p><a href="/images/lodrefine_geonames_recon_choices.png"><img src="/images/lodrefine_geonames_recon_choices.png" alt="LODRefine geonames reconciliation choices within cells" /></a></p>
+
+<p>What I do now is review the options, and choose the double check box for what is the correct Geonames record to reconcile against. The double check box means that what I choose for this cell value will also be applied to all other cells in LODRefine that have that same value.</p>
+
+<p><a href="/images/lodrefine_geonames_choose_option.png"><img src="/images/lodrefine_geonames_choose_option.png" alt="" /></a></p>
+
+<p>If I&rsquo;m uncertain, I can also click on any of the options, and the Geonames record for that option will show up for my review. Also, for each option you select as the correct one for that cell, those relevant cells should then disappear from the visible set due to our facet choices.</p>
+
+<p>Using these functionalities, I can go through the possible matches fairly quickly, and much more quickly all other work included than doing this matching entirely manually. Due to the constraints of library data&rsquo;s expected quality, this sort of semi-automated, enhanced-manual reconciliation is really where a lot of this work will occur for many (but not all) institutions.</p>
+
+<p>If in reviewing the matches, if there is no good match presented, you can choose &lsquo;create new topic&rsquo; to pass through the heading as found, unreconciled with Geonames.</p>
+
+<p>Now I&rsquo;m done my review (which took about 5 minutes for this set), I can see that I have moved from 1 matched heading to 106 matched headings (I deselected the &lsquo;None&rsquo; facet in the judgment box and closed the &lsquo;best match facet&rsquo; box).</p>
+
+<p><a href="/images/lodrefine_geonames_post_review.png"><img src="/images/lodrefine_geonames_post_review.png" alt="LODRefine Geonames reconciliation facet boxes after review" /></a></p>
+
+<p>However, there are still 134 headings that were matched to nothing in Geonames. Click on that &lsquo;none&rsquo; facet in the judgment box, and leaving the geographic_subject column text facet box up, I can do a quick perusal of what didn&rsquo;t find a match, as well as check on headings that seem like should have had a match in Geonames. However, for this dataset, I see a lot of these are archaeological dig sites, which probably aren&rsquo;t in Geonames, so the service worked fairly well so far. This is also how you&rsquo;ll find some typos or other errors as well, and any historical changes in names that may have occured. For the facet values that I do find in Geonames, I click to edit the facet value and go ahead and add the coordinates, which is what I pull from Geonames currently (we opt to choose the LoC URI for these headings at present, but this is under debate).</p>
+
+<p><em>Note: datasets with more standard geographic names (cities, states, etc) will have much better results doing the above described work. However, I want to show here a real life example of something I want to pull in coordinates from Geonames for, like archaeological or historical sites.</em></p>
+
+<p><a href="/images/lodrefine_geonames_updated_unmatched.png"><img src="/images/lodrefine_geonames_updated_unmatched.png" alt="LODRefine post-Geonames Reconciliation Text Facet for unmatched values" /></a></p>
+
+<p>I end up adding Coordinates for 5 values which weren&rsquo;t matched to Geonames either because of typos or because the site is on the border of 2 states (a situation LoC and Geonames handle differently). I fixed 7 typos as well in this review.</p>
+
+<p>Now I&rsquo;m done reconciling, I want to capture the Geonames Coordinates in my final value. First I close all the open facet boxes in LODRefine. Now on that subject_geographic column, I am going to click on the column header triangle/arrow and choose Edit Cells &gt; Transform.</p>
+
+<p><a href="/images/lodrefine_editcells_transform.png"><img src="/images/lodrefine_editcells_transform.png" alt="LODRefine Column Text Transform Selection" /></a></p>
+
+<p>In the Custom text transform on column subject_geographic box that appears, in the Expression text area, I will put in the following:</p>
+
+<pre><code>if(isNonBlank(cell.recon.match.name), value + substring(cell.recon.match.name, cell.recon.match.name.indexOf(&quot; | &quot;)), value)
+</code></pre>
+
+<p><a href="/images/lodrefine_text_transform_geonames.png"><img src="/images/lodrefine_text_transform_geonames.png" alt="" /></a></p>
+
+<p>Lets break this out a bit:</p>
+
+<ul>
+<li><code>value</code> = the cell&rsquo;s original value that was then matched against Geonames.</li>
+<li><code>cell.recon.match.name</code> = the name (and coordinates because we&rsquo;re using the Geonames recon service I cobbled together) of the value we choose as a match in the reconciliation process.</li>
+<li><code>cell.recon.match.id</code> = the URI for that matched value from the reconciliation process.</li>
+<li><em>Why isn&rsquo;t there cell.recon.match.coords? Yes, I tried that, but it involves hacking the core OpenRefine recon service backend more than I&rsquo;m willing to do right now</em></li>
+<li><code>if(test, do this, otherwise do that)</code> = not all of the cells had a match in Geonames, so I don&rsquo;t want to change those unmatched cells. The if statements then says &ldquo;if there is a reconciliation match, then pull in that custom bit, otherwise leave the cell value as is.&rdquo;</li>
+<li><code>substring(cell.recon.match.name, cell.recon.match.name.indexOf(&quot; \| &quot;))</code> = means I just want to pull everything in that cell.recon.match.name value after the pipe - namely, the coordinates. I am leaving the name values as is because they are currently matched against LoC for our metadata.</li>
+</ul>
+
+<p>Why do we need to run this transform? Because although we have done reconciliation work in LODRefine, if I was to pull this data out now (say export as CSV), the reconciliation data would not come with it. LODRefine is still storing the original cell values in the cells, with the reconciliation data laid over top of it. This transform will change the underlying cell values to the reconciled values I want, where applicable.</p>
+
+<p>After running the transform, you can remove the reconciliation data to see exactly what the underlying values now look like. And remember there is always the Undo tab in LODRefine if you need to go back.</p>
+
+<p><a href="/images/lodrefine_clear_recon_data.png"><img src="/images/lodrefine_clear_recon_data.png" alt="LODRefine clear reconciliation data menu option" /></a></p>
+
+<p>What our cell values look like now:</p>
+
+<p><a href="/images/lodrefine_subj_geo_reconciled.png"><img src="/images/lodrefine_subj_geo_reconciled.png" alt="LODRefine data post-reconciliation" /></a></p>
+
+<p>And, ta-da! Hooray! At this point, I can shut down the Geonames reconciliation python flask app running in that terminal by going to the Terminal window it is running in and typing in cntl + C. Back in LODRefine, remember to change back from rows view to records view (links to do this are in the top left corner).</p>
+
+<h2 id="thoughts-on-this-process">Thoughts on this process</h2>
+
+<p>Some may think this process seems a bit extreme for pulling in just coordinates. However&hellip;</p>
+
+<ol>
+<li>Remember that this seems extreme for the first few times or when you are writing up documentation explaining it (especially if you are as verbose as I am). In practice, this takes me maybe at most 20 minutes for a dataset of this size (73 complex MODS records with 98 unique subject_geographic headings). It gets faster and easier, and is definitely more efficient still, than completely manually updates, and remains far more accurate than completely automated reconciliation options.</li>
+<li>If so moved, I could pull in Geonames URIs as part of this work, which would be even better. However, because of how we handle our MODS at present, we don&rsquo;t. But the retrieval of URIs and other identifiers for such datapoints is a key benefit.</li>
+<li>For datasets larger than 100 quasi-complex records, this is really the only way to go <strong>at present</strong> and considering our workflows. I don&rsquo;t want to give these datasets to the catalogers and ask them to add coordinates, URIs, or other reconciled information because they need to focus on the batch work on this process - checking the mappings, getting values in appropriate formats or encodings - and not manually searching each controlled access point in a record or row then copy and pasting that information from some authority source. But this is all a balancing act.</li>
+<li>This process also has the added benefit of making very apparent typos and other such mistakes. Unfortunately, I&rsquo;m not as aware in my quick blog ramblings.</li>
+</ol>
+
+<p>Hope this is helpful for others.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6">
+        
+      </div>
+    </main>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://cmh2166.github.com/" >
+    &copy; 2018 Christina Harlow: Data Lackey
+  </a>
+    <div>
+
+
+
+  <a href="https://twitter.com/cm_harlow" class="link-transition twitter link dib z-999 pt3 pt0-l mr2" title="Twitter link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+  <a href="https://instagram.com/burrito_report/" class="link-transition instagram link dib z-999 pt3 pt0-l mr2" title="Instagram link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.271,26.578v-0.006c0.502,0,1.005,0.01,1.508-0.002  c0.646-0.017,1.172-0.57,1.172-1.217c0-0.963,0-1.927,0-2.89c0-0.691-0.547-1.24-1.236-1.241c-0.961,0-1.922-0.001-2.883,0  c-0.688,0.001-1.236,0.552-1.236,1.243c-0.001,0.955-0.004,1.91,0.003,2.865c0.001,0.143,0.028,0.291,0.073,0.426  c0.173,0.508,0.639,0.82,1.209,0.823C41.344,26.579,41.808,26.578,42.271,26.578z M33,27.817c-3.384-0.002-6.135,2.721-6.182,6.089  c-0.049,3.46,2.72,6.201,6.04,6.272c3.454,0.074,6.248-2.686,6.321-6.043C39.254,30.675,36.462,27.815,33,27.817z M21.046,31.116  v0.082c0,4.515-0.001,9.03,0,13.545c0,0.649,0.562,1.208,1.212,1.208c7.16,0.001,14.319,0.001,21.479,0  c0.656,0,1.215-0.557,1.215-1.212c0.001-4.509,0-9.02,0-13.528v-0.094h-2.912c0.411,1.313,0.537,2.651,0.376,4.014  c-0.161,1.363-0.601,2.631-1.316,3.803s-1.644,2.145-2.779,2.918c-2.944,2.006-6.821,2.182-9.946,0.428  c-1.579-0.885-2.819-2.12-3.685-3.713c-1.289-2.373-1.495-4.865-0.739-7.451C22.983,31.116,22.021,31.116,21.046,31.116z   M45.205,49.255c0.159-0.026,0.318-0.049,0.475-0.083c1.246-0.265,2.264-1.304,2.508-2.557c0.025-0.137,0.045-0.273,0.067-0.409  V21.794c-0.021-0.133-0.04-0.268-0.065-0.401c-0.268-1.367-1.396-2.428-2.78-2.618c-0.058-0.007-0.113-0.02-0.17-0.03H20.761  c-0.147,0.027-0.296,0.047-0.441,0.08c-1.352,0.308-2.352,1.396-2.545,2.766c-0.008,0.057-0.02,0.114-0.029,0.171V46.24  c0.028,0.154,0.05,0.311,0.085,0.465c0.299,1.322,1.427,2.347,2.77,2.52c0.064,0.008,0.13,0.021,0.195,0.03H45.205z M33,64  C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+
+  <a href="https://www.linkedin.com/in/christina-harlow-48797b18/" class="link-transition linkedin link dib z-999 pt3 pt0-l mr2" title="LinkedIn link">
+    <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+  </a>
+
+
+  <a href="http://github.com/cmh2166/" class="link-transition github link dib z-999 pt3 pt0-l mr2" title="Github link">
+    <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+  </a>
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>
